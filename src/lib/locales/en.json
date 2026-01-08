@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "scan": "Scan Crop & Soil (Analyze Risk)",
+    "experts": "Find Experts",
+    "weather": "Weather & News",
+    "carbonFootprint": "Carbon Footprint",
+    "admin": "Admin Panel"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "logout": "Log out"
+  },
+  "profile": {
+    "title": "Profile",
+    "myCrops": "My Crops",
+    "registerAsExpert": "Register as Expert"
+  },
+  "home": {
+    "hero": {
+      "title": "Smarter Farming, Greener Future",
+      "subtitle": "AgriVision provides cutting-edge AI tools to help you maximize yield, improve crop health, and build a sustainable farm.",
+      "ctaDashboard": "Go to Dashboard",
+      "ctaScan": "Scan a Crop"
+    },
+    "metrics": {
+      "farmers": "Farmers Empowered",
+      "productivity": "Productivity Increase",
+      "acres": "Acres Scanned"
+    },
+    "objectives": {
+      "title": "Our Core Objectives",
+      "subtitle": "We are committed to revolutionizing agriculture through technology.",
+      "enhance": {
+        "title": "Enhance Crop Health",
+        "description": "Utilize AI to detect diseases and nutrient deficiencies early."
+      },
+      "optimize": {
+        "title": "Optimize Yields",
+        "description": "Provide data-driven insights for better resource management."
+      },
+      "sustainability": {
+        "title": "Promote Sustainability",
+        "description": "Help farmers reduce waste and environmental impact."
+      }
+    },
+    "solutions": {
+      "title": "An Integrated Solution",
+      "subtitle": "AgriVision combines multiple powerful tools into a single, easy-to-use platform, giving you a complete overview of your farming operations.",
+      "diagnostics": {
+        "title": "AI-Powered Diagnostics",
+        "description": "Instant crop analysis from a single image."
+      },
+      "irrigation": {
+        "title": "Smart Irrigation",
+        "description": "Optimize water usage based on real-time data."
+      },
+      "forecasting": {
+        "title": "Yield Forecasting",
+        "description": "Predict future harvests with high accuracy."
+      }
+    },
+    "features": {
+      "title": "Explore Our Features",
+      "subtitle": "A suite of powerful tools designed for the modern farmer.",
+      "weather": {
+        "title": "Weather Analysis",
+        "description": "Get detailed weather forecasts and climate-based risk assessments for your location."
+      },
+      "cropScan": {
+        "title": "Crop Scan",
+        "description": "Instantly diagnose crop diseases and deficiencies with a simple photo."
+      },
+      "soilScan": {
+        "title": "Soil Scan",
+        "description": "Analyze soil composition and health to get recommendations for nutrient management."
+      },
+      "expert": {
+        "title": "Find an Expert",
+        "description": "Connect with experienced agricultural experts for personalized advice."
+      },
+      "alerts": {
+        "title": "News & Alerts",
+        "description": "Stay informed with the latest agricultural news, policy updates, and disease alerts."
+      }
+    }
+  }
+}

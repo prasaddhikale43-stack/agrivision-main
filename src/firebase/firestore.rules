@@ -1,0 +1,118 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Checks if the request is authenticated.
+     */
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    /**
+     * @description Checks if the authenticated user's UID matches the provided userId.
+     */
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    /**
+     * @description Checks if the authenticated user's UID matches the provided userId and resource exists.
+     */
+    function isExistingOwner(userId) {
+      return isOwner(userId) && existsAfter(/databases/$(database)/documents/users/$(userId));
+    }
+
+    /**
+     * @description Enforces document ownership for /users/{userId}.
+     * @path /users/{userId}
+     * @allow (get, create, update) if the user is the owner.
+     * @deny (delete)
+     * @principle Enforces document ownership for writes and reads.
+     */
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isSignedIn(); // Allow listing for leaderboard
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isExistingOwner(userId);
+      allow delete: if false;
+
+      /**
+       * @description Enforces document ownership for /users/{userId}/scans/{scanId}.
+       * @path /users/{userId}/scans/{scanId}
+       * @principle Enforces document ownership for writes and reads on individual documents.
+       */
+      match /scans/{scanId} {
+        allow read, write: if isOwner(userId);
+      }
+      /**
+       * @description A user can list their own scans.
+       */
+      match /scans {
+        allow list: if isOwner(userId);
+      }
+      
+      /**
+       * @description Enforces document ownership for /users/{userId}/crops/{cropId}.
+       * @path /users/{userId}/crops/{cropId}
+       * @principle Enforces document ownership for writes and reads on individual documents.
+       */
+      match /crops/{cropId} {
+        allow read, write: if isOwner(userId);
+      }
+      /**
+       * @description A user can list their own crops.
+       */
+      match /crops {
+          allow list: if isOwner(userId);
+      }
+    }
+
+    /**
+     * @description Leaderboard entries are publicly readable.
+     * @path /leaderboard/{leaderboardId}
+     * @allow (get, list) to anyone.
+     * @allow (create, update, delete) to no one.
+     * @principle Public read, no write access.
+     */
+    match /leaderboard/{leaderboardId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Expert profiles are publicly readable.
+     * @path /experts/{expertId}
+     * @allow (get, list) to anyone.
+     * @allow (create, update, delete) to no one.
+     * @principle Public read, no write access.
+     */
+    match /experts/{expertId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Activity logs can be created by any authenticated user, but only read by their owner.
+     * @path /activities/{activityId}
+     */
+    match /activities/{activityId} {
+        allow read: if request.auth.uid == resource.data.userId;
+        allow list: if request.auth.uid == request.query.where.userId;
+        allow create: if isSignedIn() && request.auth.uid == request.resource.data.userId;
+        allow update, delete: if false; // Updates handled by backend functions
+    }
+
+      /**
+       * @description Suggestions are publicly readable.
+       * @path /suggestions/{suggestionId}
+       * @allow (get, list) to anyone.
+       * @allow (create, update, delete) to no one.
+       * @principle Public read, no write access.
+       */
+      match /suggestions/{suggestionId} {
+          allow get, list: if true;
+          allow create, update, delete: if false;
+      }
+  }
+}

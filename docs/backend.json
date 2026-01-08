@@ -1,0 +1,487 @@
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile information within the AgriVision platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity, typically the user's UID."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user's ID from the authentication system."
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The user's full name."
+        },
+        "farmName": {
+          "type": "string",
+          "description": "The name of the user's farm."
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the user's farm."
+        },
+        "district": {
+            "type": "string",
+            "description": "User's district for leaderboard filtering."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The user's phone number."
+        },
+        "farmSize": {
+          "type": "number",
+          "description": "The size of the user's farm in acres or hectares."
+        },
+        "unitSystem": {
+          "type": "string",
+          "description": "The unit system preferred by the user (Metric or Imperial)."
+        },
+        "smsNotificationsEnabled": {
+          "type": "boolean",
+          "description": "Indicates whether SMS notifications are enabled for the user."
+        },
+        "emailNotificationsEnabled": {
+          "type": "boolean",
+          "description": "Indicates whether email notifications are enabled for the user."
+        },
+        "pushNotificationsEnabled": {
+          "type": "boolean",
+          "description": "Indicates whether push notifications are enabled for the user."
+        },
+        "totalCarbonCredits": {
+          "type": "number",
+          "description": "The sum of all approved credits for the user."
+        },
+        "rank": {
+            "type": "number",
+            "description": "User's current rank on the leaderboard."
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last profile update."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "fullName",
+        "farmName",
+        "location",
+        "phone",
+        "farmSize",
+        "unitSystem",
+        "smsNotificationsEnabled",
+        "emailNotificationsEnabled",
+        "pushNotificationsEnabled"
+      ]
+    },
+    "LeaderboardEntry": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "LeaderboardEntry",
+      "type": "object",
+      "description": "Represents a public entry on the leaderboard.",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user."
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The user's full name for display."
+        },
+        "totalCarbonCredits": {
+          "type": "number",
+          "description": "The user's total carbon credits."
+        },
+        "rank": {
+          "type": "number",
+          "description": "The user's current rank."
+        }
+      },
+      "required": ["userId", "fullName", "totalCarbonCredits", "rank"]
+    },
+    "ExpertProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ExpertProfile",
+      "type": "object",
+      "description": "Represents an agricultural expert's profile.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ExpertProfile, same as the user ID."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The user's ID from the authentication system."
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The expert's full name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email for the expert."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone number for the expert."
+        },
+        "location": {
+          "type": "string",
+          "description": "The location of the expert."
+        },
+        "experience": {
+          "type": "number",
+          "description": "Years of experience in the field."
+        },
+        "fieldOfExpertise": {
+          "type": "string",
+          "description": "The expert's primary area of specialization (e.g., Soil Science, Pest Control)."
+        },
+        "bio": {
+          "type": "string",
+          "description": "A detailed biography or description of the expert's skills and services."
+        },
+        "isVerified": {
+          "type": "boolean",
+          "description": "Indicates if the expert's credentials have been verified by the platform."
+        },
+        "rating": {
+          "type": "number",
+          "description": "The expert's average rating from user reviews."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "fullName",
+        "email",
+        "experience",
+        "fieldOfExpertise",
+        "bio"
+      ]
+    },
+    "ScanHistory": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ScanHistory",
+      "type": "object",
+      "description": "Represents a record of a crop or soil scan performed by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ScanHistory entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to UserProfile."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp of when the scan was performed."
+        },
+        "scanType": {
+          "type": "string",
+          "enum": ["crop", "soil"],
+          "description": "The type of scan performed."
+        },
+        "imageThumbnail": {
+          "type": "string",
+          "description": "A Base64 string or placeholder for the image thumbnail of the scanned item."
+        },
+        "results": {
+          "type": "object",
+          "description": "A flexible object to store the results of the scan, which varies by scanType."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "timestamp",
+        "scanType",
+        "imageThumbnail",
+        "results"
+      ]
+    },
+    "Crop": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Crop",
+      "type": "object",
+      "description": "Represents a specific crop being managed by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Crop entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "The ID of the user who owns this crop data."
+        },
+        "name": {
+          "type": "string",
+          "description": "The common name of the crop (e.g., Corn, Wheat)."
+        },
+        "plantingDate": {
+          "type": "string",
+          "format": "date",
+          "description": "The date the crop was planted."
+        },
+        "areaPlanted": {
+          "type": "number",
+          "description": "The area (in acres or hectares) planted with this crop."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Planted", "Growing", "Flowering", "Harvesting", "Fallow"],
+          "description": "The current growth stage of the crop."
+        },
+        "expectedYield": {
+          "type": "number",
+          "description": "The expected yield from the crop."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "name",
+        "plantingDate",
+        "areaPlanted",
+        "status"
+      ]
+    },
+    "ActivityLog": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ActivityLog",
+      "type": "object",
+      "description": "Represents a log of a farmer's climate-smart activity.",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The uid of the user who logged the activity."
+        },
+        "activityType": {
+          "type": "string",
+          "description": "e.g., 'Zero Tillage', 'Compost Application'."
+        },
+        "area": {
+          "type": "number",
+          "description": "Area in hectares (if applicable)."
+        },
+        "pesticideUsed": {
+          "type": "string",
+          "description": "e.g., 'Neem Oil'."
+        },
+        "pesticideAmount": {
+          "type": "number",
+          "description": "Amount (if applicable)."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional user notes."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the activity was logged."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Pending", "Approved", "Rejected"],
+          "description": "The verification status of the logged activity."
+        },
+        "calculatedCredits": {
+          "type": "number",
+          "description": "The carbon credits calculated for this specific activity."
+        },
+        "photoUrls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": "URLs to the images in Firebase Storage."
+        },
+        "advice": {
+            "type": "string",
+            "description": "AI-generated advice related to this activity."
+        }
+      },
+      "required": [
+        "userId",
+        "activityType",
+        "createdAt",
+        "status"
+      ]
+    },
+    "Suggestion": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "Suggestion",
+        "type": "object",
+        "description": "Represents an AI-generated suggestion for a user.",
+        "properties": {
+            "userId": {
+                "type": "string",
+                "description": "The uid of the user this suggestion is for."
+            },
+            "relatedActivityId": {
+                "type": "string",
+                "description": "The document ID from the activities collection that triggered this suggestion."
+            },
+            "suggestionText": {
+                "type": "string",
+                "description": "The full text response from the Gemini API."
+            },
+            "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When the suggestion was generated."
+            },
+            "isRead": {
+                "type": "boolean",
+                "description": "For building a notification system."
+            }
+        },
+        "required": ["userId", "relatedActivityId", "suggestionText", "createdAt", "isRead"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores user profile data, total credits, and rank.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique ID of the user (uid from Auth)."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/leaderboard/{userId}",
+        "definition": {
+          "entityName": "LeaderboardEntry",
+          "schema": {
+            "$ref": "#/backend/entities/LeaderboardEntry"
+          },
+          "description": "Stores denormalized, public-safe data for the leaderboard.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique ID of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/experts/{expertId}",
+        "definition": {
+          "entityName": "ExpertProfile",
+          "schema": {
+            "$ref": "#/backend/entities/ExpertProfile"
+          },
+          "description": "Stores public profiles for registered experts.",
+          "params": [
+            {
+              "name": "expertId",
+              "description": "The unique ID of the expert user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/scans/{scanId}",
+        "definition": {
+          "entityName": "ScanHistory",
+          "schema": {
+            "$ref": "#/backend/entities/ScanHistory"
+          },
+          "description": "Stores scan history data for each user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique ID of the user."
+            },
+            {
+              "name": "scanId",
+              "description": "The unique ID of the scan."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/crops/{cropId}",
+        "definition": {
+          "entityName": "Crop",
+          "schema": {
+            "$ref": "#/backend/entities/Crop"
+          },
+          "description": "Stores data about the crops a user is managing.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique ID of the user."
+            },
+            {
+              "name": "cropId",
+              "description": "The unique ID for the crop entry."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/activities/{activityId}",
+        "definition": {
+          "entityName": "ActivityLog",
+          "schema": {
+            "$ref": "#/backend/entities/ActivityLog"
+          },
+          "description": "Stores logs of climate-smart activities for all users. Triggers backend functions for processing.",
+          "params": [
+            {
+              "name": "activityId",
+              "description": "The unique ID for the activity log."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/suggestions/{suggestionId}",
+        "definition": {
+          "entityName": "Suggestion",
+          "schema": {
+            "$ref": "#/backend/entities/Suggestion"
+          },
+          "description": "Stores AI-generated suggestions for each user.",
+          "params": [
+            {
+              "name": "suggestionId",
+              "description": "The unique ID for the suggestion."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+
+    

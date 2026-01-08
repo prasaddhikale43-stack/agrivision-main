@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "homeHero",
+      "description": "A lush green farm field under a bright blue sky.",
+      "imageUrl": "https://picsum.photos/seed/green-field/1920/1080",
+      "imageHint": "farm field"
+    },
+    {
+      "id": "integratedSolution",
+      "description": "A farmer using a tablet in a modern greenhouse.",
+      "imageUrl": "https://picsum.photos/seed/smart-farm/600/400",
+      "imageHint": "farmer tablet"
+    },
+    {
+      "id": "healthyCrop",
+      "description": "A close-up of a healthy, vibrant green plant leaf.",
+      "imageUrl": "https://picsum.photos/seed/healthy-leaf/400/400",
+      "imageHint": "healthy plant"
+    },
+    {
+      "id": "diseasedCrop",
+      "description": "A plant leaf showing signs of disease, like yellow spots.",
+      "imageUrl": "https://picsum.photos/seed/sick-plant/400/400",
+      "imageHint": "diseased leaf"
+    }
+  ]
+}

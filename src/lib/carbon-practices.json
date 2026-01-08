@@ -1,0 +1,32 @@
+{
+  "practices": [
+    { "id": "reduced_tillage", "name": "Reduced Tillage", "baseFactor": 1.2, "unit": "kg_co2_per_acre" },
+    { "id": "zero_tillage", "name": "Zero Tillage", "baseFactor": 1.5, "unit": "kg_co2_per_acre" },
+    { "id": "cover_cropping", "name": "Cover Cropping", "baseFactor": 1.8, "unit": "kg_co2_per_acre" },
+    { "id": "crop_rotation", "name": "Crop Rotation", "baseFactor": 1.4, "unit": "kg_co2_per_acre" },
+    { "id": "mixed_cropping", "name": "Mixed Cropping", "baseFactor": 1.6, "unit": "kg_co2_per_acre" },
+    { "id": "compost_application", "name": "Compost Application", "baseFactor": 2.5, "unit": "kg_co2_per_ton" },
+    { "id": "biochar_use", "name": "Biochar Use", "baseFactor": 3.0, "unit": "kg_co2_per_ton" },
+    { "id": "organic_fertilizer_application", "name": "Organic Fertilizer Application", "baseFactor": 1.1, "unit": "kg_co2_per_acre" },
+    { "id": "drip_irrigation", "name": "Drip Irrigation", "baseFactor": 0.8, "unit": "kg_co2_per_acre" },
+    { "id": "rainwater_harvesting", "name": "Rainwater Harvesting", "baseFactor": 0.5, "unit": "kg_co2_per_1000L" },
+    { "id": "scheduling_irrigation", "name": "Scheduled Irrigation (Soil Moisture Based)", "baseFactor": 0.7, "unit": "kg_co2_per_acre" },
+    { "id": "mulching", "name": "Mulching to Reduce Evaporation", "baseFactor": 0.9, "unit": "kg_co2_per_acre" },
+    { "id": "integrated_pest_management", "name": "Integrated Pest Management (IPM)", "baseFactor": 1.3, "unit": "kg_co2_per_acre" },
+    { "id": "biological_pest_control", "name": "Biological Pest Control", "baseFactor": 1.7, "unit": "kg_co2_per_acre" },
+    { "id": "reduced_synthetic_fertilizer", "name": "Reduced Synthetic Fertilizer Use", "baseFactor": 2.2, "unit": "kg_co2_per_acre" },
+    { "id": "neem_based_pesticide", "name": "Neem-Based Pesticide Use", "baseFactor": 1.0, "unit": "kg_co2_per_acre" },
+    { "id": "solar_irrigation_pump", "name": "Solar-Powered Irrigation Pump", "baseFactor": 5.0, "unit": "kg_co2_per_month" },
+    { "id": "manual_seeding", "name": "Manual Seeding", "baseFactor": 0.6, "unit": "kg_co2_per_acre" },
+    { "id": "reduced_diesel_usage", "name": "Reduced Diesel Usage in Operations", "baseFactor": 2.7, "unit": "kg_co2_per_liter" },
+    { "id": "tree_planting", "name": "Tree Planting (Perennial Crops)", "baseFactor": 10.0, "unit": "kg_co2_per_tree" },
+    { "id": "border_plantation", "name": "Border Plantation / Live Fencing", "baseFactor": 2.0, "unit": "kg_co2_per_100m" },
+    { "id": "agroforestry_farming", "name": "Agroforestry-Based Farming", "baseFactor": 4.0, "unit": "kg_co2_per_acre" },
+    { "id": "composting_livestock_waste", "name": "Composting Livestock Waste", "baseFactor": 1.9, "unit": "kg_co2_per_ton" },
+    { "id": "improved_manure_storage", "name": "Improved Manure Storage", "baseFactor": 1.5, "unit": "kg_co2_per_ton" },
+    { "id": "feed_optimization", "name": "Feed Optimization for Methane Reduction", "baseFactor": 6.0, "unit": "kg_co2_per_livestock_unit" },
+    { "id": "soil_organic_carbon_monitoring", "name": "Soil Organic Carbon Monitoring", "baseFactor": 0.2, "unit": "kg_co2_per_sample" },
+    { "id": "community_compost_pit", "name": "Community Compost Pit Creation", "baseFactor": 0.3, "unit": "kg_co2_per_participant" },
+    { "id": "local_seed_saving", "name": "Local Seed Saving / Indigenous Crop Cultivation", "baseFactor": 1.1, "unit": "kg_co2_per_acre" }
+  ]
+}

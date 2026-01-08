@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // A user can read/write their own user document
+    match /users/{userId} {
+      allow read: if isSignedIn(); // Allow any signed-in user to read any user profile
+      allow write: if isOwner(userId); // Only the owner can write to their profile
+
+      // Any signed-in user can read crop and scan data for the dashboard/history features
+      match /crops/{cropId} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /scans/{scanId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /pesticideLogs/{logId} {
+        allow read, write: if isOwner(userId);
+      }
+      
+      match /pesticideLogs {
+        allow list: if isOwner(userId);
+      }
+    }
+
+    // Leaderboard is public
+    match /leaderboard/{entry} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Expert profiles are public
+    match /experts/{expertId} {
+      allow read: if true;
+      allow write: if isOwner(expertId); // Allow experts to update their own profiles
+    }
+
+    // Activities can be created by the owner, and read by any signed-in user
+    match /activities/{activityId} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(request.resource.data.userId);
+      allow update, delete: if false; // Updates handled by backend
+    }
+    
+    // Suggestions can be read by any signed-in user
+    match /suggestions/{suggestionId} {
+        allow read: if isSignedIn();
+        allow write: if false;
+    }
+  }
+}
